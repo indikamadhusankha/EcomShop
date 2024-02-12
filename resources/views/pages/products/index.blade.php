@@ -48,6 +48,7 @@
                                 <th>Supplier</th>
                                 <th class="text-right px-5">Price</th>
                                 <th>SKU</th>
+                                <th class="text-center">Sale Status</th>
                                 <th class="text-center">Status</th>
                                 <th>Action</th>
                             </tr>
@@ -67,6 +68,17 @@
                                         <td>{{$Product->supplierName}}</td>
                                         <td  class="text-right px-5">{{number_format($Product->price,2)}}</td>
                                         <td>{{$Product->sku}}</td>
+                                        <td class="text-center">
+                                            @if($Product->sale_status == 'Active')
+                                            <span class="badge badge-success">{{$Product->sale_status}}</span>
+                                            @elseif ($Product->sale_status == 'Sold')
+                                            <span class="badge badge-secondary">{{$Product->sale_status}}</span>
+                                            @elseif ($Product->sale_status == 'Repaire')
+                                            <span class="badge badge-warning">{{$Product->sale_status}}</span>
+                                            @elseif ($Product->sale_status == 'Rejected')
+                                            <span class="badge badge-danger">{{$Product->sale_status}}</span>
+                                            @endif
+                                            </td>
 
                                         <td>
                                             <h5 class="text-center m-0">

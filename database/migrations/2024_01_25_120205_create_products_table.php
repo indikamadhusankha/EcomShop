@@ -24,6 +24,7 @@ return new class extends Migration
             $table->integer('band_id')->nullable()->constrained()->onDelete('cascade');
             $table->string('sku');
             $table->string('barcode')->nullable();
+            $table->string('sale_status')->default(1);
             $table->integer('status')->default(1);
             $table->timestamps();
         });

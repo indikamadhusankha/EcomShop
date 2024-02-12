@@ -72,11 +72,11 @@ Route::group(['prefix' => 'Products'], function () {
 
     //Repaire Products
 
-    Route::get('/RepaireProducts', [ProductController::class, 'index'])->name('Products.delete');
+
+    Route::get('/RepaireProducts', [RepaireProductsController::class, 'index'])->name('Products.repaire');
 
     // Products Sub Category Route
-
-        Route::get('/GetSubCategory', [RepaireProductsController::class, 'index'])->name('Products.repaire');
+    Route::get('/GetSubCategory', [ProductSubCategoryController::class, 'index'])->name('Products.getSubCategory');
 
 });
 

@@ -21,12 +21,14 @@ class ProductController extends Controller
 
     public function index(Request $request)
     {
-        $Products = Product::select('products.*','categories.name AS category_name','sub_categories.name as sub_category_name', 'suppliers.name as supplierName' )->leftJoin('categories','categories.id','products.category_id')->leftJoin('sub_categories','sub_categories.id','products.sub_category_id')
-        ->leftJoin('suppliers','suppliers.id','products.supplier')->latest();
+        $Products = Product::select('products.*','categories.name AS category_name','sub_categories.name as sub_category_name', 'suppliers.name as supplierName','sale_status.sale_status' )->leftJoin('categories','categories.id','products.category_id')->leftJoin('sub_categories','sub_categories.id','products.sub_category_id')
+        ->leftJoin('suppliers','suppliers.id','products.supplier')->leftJoin('sale_status','sale_status.id','products.sale_status')
+        ->latest();
 
         if(!empty($request->get('keyword'))){
             /* $Products = DB::table('products')->where('sku','LIKE', '%' .$request->get('keyword'). '%'); */
-            $Products = Product::select('products.*','categories.name AS category_name','sub_categories.name as sub_category_name' )->leftJoin('categories','categories.id','products.category_id')->leftJoin('sub_categories','sub_categories.id','products.sub_category_id')->where('sku','LIKE', '%' .$request->get('keyword'). '%');
+            $Products = Product::select('products.*','categories.name AS category_name','sub_categories.name as sub_category_name','sale_status.sale_status' )->leftJoin('categories','categories.id','products.category_id')->leftJoin('sub_categories','sub_categories.id','products.sub_category_id')->leftJoin('sale_status','sale_status.id','products.sale_status')
+            ->where('sku','LIKE', '%' .$request->get('keyword'). '%');
 
 
         }
