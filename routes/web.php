@@ -4,8 +4,10 @@ use App\Http\Controllers\SuppliersController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\RepaireProductsController;
 use App\Http\Controllers\ProductSubCategoryController;
 use App\Http\Controllers\SubCategoryController;
+use App\Models\RepaireProduct;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -70,11 +72,11 @@ Route::group(['prefix' => 'Products'], function () {
 
     //Repaire Products
 
-    Route::get('/RepaireProducts', [ProductController::class, 'destroy'])->name('Products.delete');
+    Route::get('/RepaireProducts', [ProductController::class, 'index'])->name('Products.delete');
 
     // Products Sub Category Route
 
-        Route::get('/GetSubCategory', [ProductSubCategoryController::class, 'index'])->name('Products.getSubCategory');
+        Route::get('/GetSubCategory', [RepaireProductsController::class, 'index'])->name('Products.repaire');
 
 });
 

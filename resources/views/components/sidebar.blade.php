@@ -76,7 +76,7 @@ with font-awesome or any other icon font library -->
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="users.html" class="nav-link">
+                    <a href="{{route('Products.repaire')}}" class="nav-link">
                         <i class="nav-icon fas fa-tools"></i>
                         <p>Repaire</p>
                     </a>
