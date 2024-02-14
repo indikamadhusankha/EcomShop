@@ -71,9 +71,9 @@ Route::group(['prefix' => 'Products'], function () {
     Route::get('/DeleteProduct/{id}', [ProductController::class, 'destroy'])->name('Products.delete');
 
     //Repaire Products
-
-
     Route::get('/RepaireProducts', [RepaireProductsController::class, 'index'])->name('Products.repaire');
+    Route::post('/AddRepaire', [RepaireProductsController::class, 'store'])->name('Repaire.add');
+
 
     // Products Sub Category Route
     Route::get('/GetSubCategory', [ProductSubCategoryController::class, 'index'])->name('Products.getSubCategory');
