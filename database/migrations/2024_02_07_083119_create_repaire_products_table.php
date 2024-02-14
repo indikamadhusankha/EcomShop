@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('repaire_products', function (Blueprint $table) {
             $table->id();
             $table->string('sku');
-            $table->double('Price');
+            $table->double('Price')->default(0);
             $table->date('ReData')->nullable();
             $table->string('description')->nullable();
             $table->timestamps();

@@ -75,7 +75,7 @@
                                             <span class="badge badge-secondary">{{$Product->sale_status}}</span>
                                             @elseif ($Product->sale_status == 'Repaire')
                                             <span class="badge badge-warning">{{$Product->sale_status}}</span>
-                                            @elseif ($Product->sale_status == 'Rejected')
+                                            @elseif ($Product->sale_status == 'Return')
                                             <span class="badge badge-danger">{{$Product->sale_status}}</span>
                                             @endif
                                             </td>

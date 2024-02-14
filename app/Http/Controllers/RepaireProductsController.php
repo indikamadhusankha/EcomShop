@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\RepaireProduct;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -14,11 +15,13 @@ class RepaireProductsController extends Controller
 
     public function store(Request $request){
         $product = DB::table('products')->where('sku',$request->sku)->first();
-        if($product->sku > 0){
-            dd('indika');
+        if(empty($product->sku)){
+
 
         }else{
-            dd('error');
+            $repaire_product = new RepaireProduct;
+            $repaire_product->sku = $request->sku;
+            $repaire_product->save();
         }
 
     }
