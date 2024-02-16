@@ -73,14 +73,23 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        @if ($products->isNotEmpty())
+                            @foreach ($products as $key => $product)
+                                <tr>
+                                    <td>{{ ++$key }}</td>
+                                    <td>{{ $product->sku }}</td>
+                                    <td>{{ $product->ProName }}</td>
+                                    <td>{{ $product->CatName }}</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            @endforeach
+                        @else
+                            <td class="text-center" colspan="8">Repaire Item NOT Found!</td>
+                        @endif
+
                     </tbody>
                 </table>
 

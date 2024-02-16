@@ -11,7 +11,10 @@ class RepaireProductsController extends Controller
 {
     public function index()
     {
-        return view('pages.products.repaire-products');
+        $products = DB::table('repaire_products')->select('repaire_products.*','categories.name as CatName','products.title as ProName')->leftJoin('products','products.sku','repaire_products.sku')->leftJoin('categories','categories.id','products.category_id')->get();
+
+        return view('pages.products.repaire-products', compact('products'));
+
     }
 
 
@@ -23,16 +26,17 @@ class RepaireProductsController extends Controller
 
             return redirect()->route('Products.repaire')->with('Errors', 'Product Not Found!');
         } else {
-            $product = DB::table('repaire_products')->where('sku', $request->sku)->first();
-            if ($product->id > 0) {
+            $Reproduct = DB::table('repaire_products')->where('sku', $request->sku)->first();
+            if (!empty($Reproduct) && ($Reproduct->sku > 0)) {
                 return redirect()->route('Products.repaire')->with('Errors', 'Product Already Added!');
             } else {
 
                 $repaire_product = new RepaireProduct;
                 $repaire_product->sku = $request->sku;
+                $repaire_product->Product_id = $product->id;
                 $repaire_product->save();
 
-                Product::where('sku', $product->sku)->update(['sale_status' => 3]);
+                Product::where('sku', $request->sku)->update(['sale_status' => 3]);
                 return redirect()->back();
             }
         }

@@ -17,6 +17,7 @@ return new class extends Migration
             $table->double('Price')->default(0);
             $table->date('ReData')->nullable();
             $table->string('description')->nullable();
+            $table->foreignId('Product_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }
