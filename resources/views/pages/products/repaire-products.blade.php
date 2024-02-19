@@ -18,6 +18,16 @@
         <!-- Default box -->
         <div class="container-fluid">
 
+
+
+
+
+
+
+
+
+
+
             <div class="card">
                 <div class="card-body">
 
@@ -30,7 +40,7 @@
                                         placeholder="Enter Product SKU" aria-label="Enter Product SKU"
                                         aria-describedby="basic-addon2">
                                     <div class="input-group-append">
-                                        <button class="btn btn-warning" type="submit">Add Repaire</button>
+                                        <button class="btn btn-info" type="submit">Add Repaire</button>
                                     </div>
                                 </div>
                     </form>
@@ -66,24 +76,37 @@
                             <th>SKU</th>
                             <th>Product Name</th>
                             <th>Category</th>
-                            <th>Description</th>
                             <th class="text-right px-5">Repaire Price</th>
                             <th>Repaire Date</th>
-                            <th>Action</th>
+                            <th>Status</th>
+                            <th class="text-center">Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @if ($products->isNotEmpty())
+                        @if ($products->count() > 0)
                             @foreach ($products as $key => $product)
                                 <tr>
                                     <td>{{ ++$key }}</td>
                                     <td>{{ $product->sku }}</td>
                                     <td>{{ $product->ProName }}</td>
                                     <td>{{ $product->CatName }}</td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
+                                    <td class="text-right px-5">{{ $product->Price }}</td>
+                                    <td>{{ date('Y-m-d', strtotime($product->created_at))  }}</td>
+                                    <td>
+                                        @if ($product->Rep_status == 1)
+                                            <span class="badge badge-warning">{{ $product->rep_status }}</span>
+                                        @elseif ($product->Rep_status == 2)
+                                            <span class="badge badge-success">{{ $product->rep_status }}</span>
+                                        @endif
+                                    </td>
+                                    <td class="text-right">
+                                        <a class="btn btn-success" href="?id={{ $product->sku }}" data-toggle="modal"
+                                            data-target="#exampleModal">
+                                            Complete</a>
+                                        <a class="btn btn-secondary" href="?id={{ $product->sku }}" data-toggle="modal"
+                                            data-target="#exampleModal">
+                                            View Report</a>
+                                    </td>
                                 </tr>
                             @endforeach
                         @else
@@ -93,9 +116,11 @@
                     </tbody>
                 </table>
 
+
+
             </div>
             <div class="card-footer clearfix">
-                {{-- {{ $Products->links('pagination::bootstrap-5') }} --}}
+                {{ $products->links('pagination::bootstrap-5') }}
             </div>
         </div>
         </div>

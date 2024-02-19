@@ -47,6 +47,7 @@
                                 <th>Category</th>
                                 <th>Supplier</th>
                                 <th class="text-right px-5">Price</th>
+                                <th class="text-right px-5">Sale Price</th>
                                 <th>SKU</th>
                                 <th class="text-center">Sale Status</th>
                                 <th class="text-center">Status</th>
@@ -67,6 +68,7 @@
                                                @endif
                                         <td>{{$Product->supplierName}}</td>
                                         <td  class="text-right px-5">{{number_format($Product->price,2)}}</td>
+                                        <td></td>
                                         <td>{{$Product->sku}}</td>
                                         <td class="text-center">
                                             @if($Product->sale_status == 'Active')

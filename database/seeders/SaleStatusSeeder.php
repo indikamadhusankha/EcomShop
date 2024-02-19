@@ -18,7 +18,7 @@ class SaleStatusSeeder extends Seeder
             ['sale_status' => 'Active' ],
             ['sale_status' => 'Sold' ],
             ['sale_status' => 'Repaire' ],
-            ['sale_status' => 'Rejected' ],
+            ['sale_status' => 'Return' ],
             ['sale_status' => 'Damage' ],
         ];
 

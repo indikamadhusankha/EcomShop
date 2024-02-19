@@ -21,19 +21,24 @@ class ProductController extends Controller
 
     public function index(Request $request)
     {
-        $Products = Product::select('products.*','categories.name AS category_name','sub_categories.name as sub_category_name', 'suppliers.name as supplierName','sale_status.sale_status' )->leftJoin('categories','categories.id','products.category_id')->leftJoin('sub_categories','sub_categories.id','products.sub_category_id')
-        ->leftJoin('suppliers','suppliers.id','products.supplier')->leftJoin('sale_status','sale_status.id','products.sale_status')
-        ->latest();
+        $Products = DB::table('products')->select('products.*', 'categories.name AS category_name', 'sub_categories.name as sub_category_name', 'suppliers.name as supplierName', 'sale_status.sale_status',)
+            ->leftJoin('categories', 'categories.id', 'products.category_id')
+            ->leftJoin('sub_categories', 'sub_categories.id', 'products.sub_category_id')
+            ->leftJoin('suppliers', 'suppliers.id', 'products.supplier')
+            ->leftJoin('sale_status', 'sale_status.id', 'products.sale_status')
+            ->latest();
 
-        if(!empty($request->get('keyword'))){
+            /* dd($Products); */
+
+        if (!empty($request->get('keyword'))) {
             /* $Products = DB::table('products')->where('sku','LIKE', '%' .$request->get('keyword'). '%'); */
-            $Products = Product::select('products.*','categories.name AS category_name','sub_categories.name as sub_category_name','sale_status.sale_status' )->leftJoin('categories','categories.id','products.category_id')->leftJoin('sub_categories','sub_categories.id','products.sub_category_id')->leftJoin('sale_status','sale_status.id','products.sale_status')
-            ->where('sku','LIKE', '%' .$request->get('keyword'). '%');
-
-
+            $Products = Product::select('products.*', 'categories.name AS category_name', 'sub_categories.name as sub_category_name', 'sale_status.sale_status')    ->leftJoin('categories', 'categories.id', 'products.category_id')
+            ->leftJoin('sub_categories', 'sub_categories.id', 'products.sub_category_id')
+            ->leftJoin('sale_status', 'sale_status.id', 'products.sale_status')
+            ->where('sku', 'LIKE', '%' . $request->get('keyword') . '%');
         }
 
-       $Products = $Products->paginate(10);
+        $Products = $Products->paginate(10);
 
 
         return view('pages.products.index', compact('Products'));
@@ -45,7 +50,6 @@ class ProductController extends Controller
         $data['Categories'] = Category::orderBy('name', 'ASC')->get();
         $data['Suppliers'] = Supplier::orderBy('name', 'ASC')->get();
         return view('pages.products.new-products', $data);
-
     }
 
 
@@ -84,10 +88,10 @@ class ProductController extends Controller
      */
     public function show(string $id)
     {
-        $data ['Product'] = $this->Product->find($id);
+        $data['Product'] = $this->Product->find($id);
         $data['Categories'] = Category::orderBy('name', 'ASC')->get();
         $data['Suppliers'] = Supplier::orderBy('name', 'ASC')->get();
-        $data['Sub_Categories'] = SubCategory::where('category_id', $data ['Product']->category_id)->get();
+        $data['Sub_Categories'] = SubCategory::where('category_id', $data['Product']->category_id)->get();
 
         return view('pages.products.edit-products', $data);
     }
@@ -97,11 +101,11 @@ class ProductController extends Controller
     {
         $Rules = [
             'title' => 'required',
-            'slug'  => 'required|unique:products,slug,' .$request->id. ',id',
+            'slug'  => 'required|unique:products,slug,' . $request->id . ',id',
             'supplier'  => 'required',
             'price' => 'required|numeric',
             'category_id' => 'required|numeric',
-            'sku'   => 'required|unique:products,sku,'.$request->id.',id',
+            /* 'sku'   => 'required|unique:products,sku,' . $request->id . ',id', */
 
         ];
 

@@ -18,6 +18,7 @@ return new class extends Migration
             $table->date('ReData')->nullable();
             $table->string('description')->nullable();
             $table->foreignId('Product_id')->constrained()->onDelete('cascade');
+            $table->bigInteger('Rep_status')->default(1);
             $table->timestamps();
         });
     }

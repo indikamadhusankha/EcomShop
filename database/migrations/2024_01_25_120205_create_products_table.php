@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('slug');
             $table->string('description')->nullable();
             $table->double('price',10,2)->nullable();
+            $table->double('sale_price')->nullable();
             $table->foreignId('supplier')->references('id')->on('suppliers')
             ->onDelete('cascade');
             $table->foreignId('category_id')->constrained()->onDelete('cascade');

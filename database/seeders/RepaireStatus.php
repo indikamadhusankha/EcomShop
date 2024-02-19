@@ -5,15 +5,14 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-
-class CategorySeeder extends Seeder
+class RepaireStatus extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        DB::table('categories')->truncate();
+        DB::table('repaire_status')->truncate();
 
         $SaleStatus = [
             ['rep_status' => 'Pending' ],
@@ -21,6 +20,6 @@ class CategorySeeder extends Seeder
 
         ];
 
-        DB::table('categories')->insert($SaleStatus);
+        DB::table('repaire_status')->insert($SaleStatus);
     }
 }

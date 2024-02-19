@@ -73,6 +73,8 @@ Route::group(['prefix' => 'Products'], function () {
     //Repaire Products
     Route::get('/RepaireProducts', [RepaireProductsController::class, 'index'])->name('Products.repaire');
     Route::post('/AddRepaire', [RepaireProductsController::class, 'store'])->name('Repaire.add');
+    Route::post('/CompleteRepaire', [RepaireProductsController::class, 'update'])->name('Repaire.complete');
+
 
 
     // Products Sub Category Route

@@ -97,8 +97,9 @@
                                     <div class="col-md-6">
                                         <div class="mb-3">
                                             <label for="sku">SKU (Stock Keeping Unit)</label>
-                                            <input type="text" name="sku" id="sku" class="form-control"
-                                                placeholder="sku" value="{{ $Product->sku }}">
+                                            <input disabled type="text" id="sku" class="form-control"
+                                                placeholder="sku" aria-describedby="passwordHelpBlock" value="{{ $Product->sku }}">
+                                                <div id="passwordHelpBlock" class="form-text">You are not allowed to change the SKU.</div>
                                             <p></p>
                                         </div>
                                     </div>
