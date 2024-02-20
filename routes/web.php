@@ -73,7 +73,9 @@ Route::group(['prefix' => 'Products'], function () {
     //Repaire Products
     Route::get('/RepaireProducts', [RepaireProductsController::class, 'index'])->name('Products.repaire');
     Route::post('/AddRepaire', [RepaireProductsController::class, 'store'])->name('Repaire.add');
-    Route::post('/CompleteRepaire', [RepaireProductsController::class, 'update'])->name('Repaire.complete');
+    Route::get('/CompleteRepaire/{id}', [RepaireProductsController::class, 'show'])->name('Repaire.show');
+    Route::post('/UpdateRepaire/{id}', [RepaireProductsController::class, 'update'])->name('Repaire.update');
+
 
 
 

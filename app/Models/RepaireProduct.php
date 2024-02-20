@@ -10,8 +10,10 @@ class RepaireProduct extends Model
     use HasFactory;
     protected $fillable = [
         'sku',
-        'Price',
-        'ReData',
         'description',
+        'Price',
+        'ReDate',
+        'ReStatus',
+        'Supplier'
     ];
 }

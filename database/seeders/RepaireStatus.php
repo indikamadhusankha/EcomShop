@@ -17,6 +17,8 @@ class RepaireStatus extends Seeder
         $SaleStatus = [
             ['rep_status' => 'Pending' ],
             ['rep_status' => 'Complete' ],
+            ['rep_status' => 'Return' ],
+            ['rep_status' => 'Damage' ],
 
         ];
 

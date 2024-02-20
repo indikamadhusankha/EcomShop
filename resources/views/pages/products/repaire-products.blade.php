@@ -93,18 +93,18 @@
                                     <td class="text-right px-5">{{ $product->Price }}</td>
                                     <td>{{ date('Y-m-d', strtotime($product->created_at))  }}</td>
                                     <td>
-                                        @if ($product->Rep_status == 1)
+                                        @if ($product->ReStatus == 1)
                                             <span class="badge badge-warning">{{ $product->rep_status }}</span>
-                                        @elseif ($product->Rep_status == 2)
+                                        @elseif ($product->ReStatus == 2)
                                             <span class="badge badge-success">{{ $product->rep_status }}</span>
                                         @endif
                                     </td>
                                     <td class="text-right">
-                                        <a class="btn btn-success" href="?id={{ $product->sku }}" data-toggle="modal"
-                                            data-target="#exampleModal">
+                                        @if($product->ReStatus !== 2)
+                                        <a class="btn btn-success" href="{{route('Repaire.show',[$product->id])}}">
                                             Complete</a>
-                                        <a class="btn btn-secondary" href="?id={{ $product->sku }}" data-toggle="modal"
-                                            data-target="#exampleModal">
+                                            @endif
+                                        <a class="btn btn-secondary" href="?id={{ $product->sku }}">
                                             View Report</a>
                                     </td>
                                 </tr>
