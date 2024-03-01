@@ -62,6 +62,7 @@ class RepaireProductsController extends Controller
         }
     }
 
+
     public function show($id){
        $data['Rep_Product'] = $this->rep_product->find($id);
        $product_id = $data['Rep_Product']->Product_id;
